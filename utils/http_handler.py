@@ -1,11 +1,12 @@
 import requests
 import json
-from ..utils.validator import validator
+from utils.validator import validator
 import os
+
+from data.endpoints import UrlAndEndPoints as EndPoint
 
 
 class HTTPHandler:
-    BASE_URL = "https://reqres.in"
 
     @staticmethod
     def validate_response(response, schemas):
@@ -19,7 +20,7 @@ class HTTPHandler:
 
     @classmethod
     def get(cls, endpoint, schemas=None):
-        url = f"{cls.BASE_URL}{endpoint}"
+        url = f"{EndPoint.BASE_URL}{endpoint}"
         response = requests.get(url)
         if schemas:
             schemas_path_and_name = os.path.join('..', 'utils', 'schemas', schemas)
@@ -29,7 +30,7 @@ class HTTPHandler:
 
     @classmethod
     def post(cls, endpoint, data, schemas=None):
-        url = f"{cls.BASE_URL}{endpoint}"
+        url = f"{EndPoint.BASE_URL}{endpoint}"
         response = requests.post(url, json=data)
         if schemas:
             schemas_path_and_name = os.path.join('..', 'utils', 'schemas', schemas)
@@ -39,7 +40,7 @@ class HTTPHandler:
 
     @classmethod
     def put(cls, endpoint, data, schemas=None):
-        url = f"{cls.BASE_URL}{endpoint}"
+        url = f"{EndPoint.BASE_URL}{endpoint}"
         response = requests.put(url, json=data)
         if schemas:
             schemas_path_and_name = os.path.join('..', 'utils', 'schemas', schemas)
@@ -49,7 +50,7 @@ class HTTPHandler:
 
     @classmethod
     def patch(cls, endpoint, data, schemas=None):
-        url = f"{cls.BASE_URL}{endpoint}"
+        url = f"{EndPoint.BASE_URL}{endpoint}"
         response = requests.patch(url, json=data)
         if schemas:
             schemas_path_and_name = os.path.join('..', 'utils', 'schemas', schemas)
@@ -59,7 +60,7 @@ class HTTPHandler:
 
     @classmethod
     def delete(cls, endpoint, schemas=None):
-        url = f"{cls.BASE_URL}{endpoint}"
+        url = f"{EndPoint.BASE_URL}{endpoint}"
         response = requests.delete(url)
         if schemas:
             print('No schemas needed')

@@ -1,7 +1,10 @@
 import jsonschema
 import json
+import logging
 from os.path import join, dirname
 from jsonschema import Draft202012Validator
+
+logger = logging.getLogger("api")
 
 
 def validator(data, schema_file):
@@ -12,7 +15,7 @@ def validator(data, schema_file):
     try:
         Draft202012Validator.check_schema(schema)
     except jsonschema.exceptions.SchemaError as e:
-        print("JSON Schema is incorrect:", e)
+        logger.error("JSON Schema is incorrect:", e)
     else:
         return Draft202012Validator(schema).is_valid(data)
 
@@ -27,7 +30,7 @@ def _load_json_schema(filename):
             try:
                 return json.loads(schema_file.read())
             except json.decoder.JSONDecodeError:
-                print(f"JSON file has incorrect data: {relative_path}")
+                logger.error(f"JSON file has incorrect data: {relative_path}")
     except FileNotFoundError:
-        print(f"No such JSON schema file: {relative_path}")
+        logger.error(f"No such JSON schema file: {relative_path}")
         return False
