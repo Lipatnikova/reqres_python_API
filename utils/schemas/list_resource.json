@@ -1,0 +1,76 @@
+{
+  "$id": "list_resource",
+  "$title": "Schema for API 'list_resource' 'https://reqres.in/api/unknown'",
+  "type": "object",
+  "required": [
+    "page",
+    "per_page",
+    "total",
+    "total_pages",
+    "data",
+    "support"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "page": {
+      "type": "integer"
+    },
+    "per_page": {
+      "type": "integer"
+    },
+    "total": {
+      "type": "integer"
+    },
+    "total_pages": {
+      "type": "integer"
+    },
+    "data": {
+      "type": "array",
+      "additionalItems": true,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "year",
+          "color",
+          "pantone_value"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "year": {
+            "type": "integer"
+          },
+          "color": {
+            "type": "string"
+          },
+          "pantone_value": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "support": {
+      "type": "object",
+      "required": [
+        "url",
+        "text"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
