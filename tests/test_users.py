@@ -1,6 +1,6 @@
 import logging
 
-from data_tests.data_tests import DataPost, random_num_user
+from data_tests.data_tests import DataPost, random_num_user, DataPut
 from data_tests.expected_result import ExpectedRequestsResult as Code
 from data_tests.endpoints import UrlAndEndPoints as EndPoint
 from utils.http_handler import HTTPHandler
@@ -35,6 +35,16 @@ class TestsUsersEndPoint:
         assert get_single_user, logger.warning('API response is incorrect')
 
     def test_post_create_user_status_code(self):
-        response = HTTPHandler.post(f'{EndPoint.SINGLE_USER}', DataPost.data_post_users)
+        response = HTTPHandler.post(f'{EndPoint.SINGLE_USER}', DataPost.data_post_user)
         response_status = response.status_code
+        logger.info(response_status)
         assert response_status == Code.CREATED, logger.warning('Response status code is incorrect')
+
+    def test_put_create_and_update_user_status_code(self):
+        response1 = HTTPHandler.post(f'{EndPoint.SINGLE_USER}', DataPost.data_post_user)
+        logger.info(response1)
+        assert response1.status_code == Code.CREATED, logger.warning('Response status code is incorrect')
+        response2 = HTTPHandler.put(f'{EndPoint.SINGLE_USER}2', DataPut.data_put_user)
+        logger.info(response2)
+        assert response2.status_code == Code.STATUS_CODE_OK, logger.warning('Response status code is incorrect')
+        assert response1 != response2, logger.warning("Response doesn't change")

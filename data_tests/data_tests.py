@@ -34,7 +34,16 @@ def random_num_user():
 class DataPost:
     person = next(generated_person())
 
-    data_post_users = {
+    data_post_user = {
+        "name": person.name,
+        "job": person.job
+    }
+
+
+class DataPut:
+    person = next(generated_person())
+
+    data_put_user = {
         "name": person.name,
         "job": person.job
     }
