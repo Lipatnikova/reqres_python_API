@@ -18,7 +18,7 @@ class TestsUsersEndPoint:
     def test_get_list_users_schemas(self):
         get_list_users = HTTPHandler.get(f'{EndPoint.LIST_USERS}{random_num_user}', 'list_users.json')
         logger.info(get_list_users.json())
-        assert get_list_users, logger.warning('API response is incorrect')
+        assert get_list_users, logger.warning('API response is incorrect, wrong schema')
 
     def test_get_single_user_response_status_code(self):
         get_single_user = HTTPHandler.get(f'{EndPoint.SINGLE_USER}2')
@@ -32,7 +32,7 @@ class TestsUsersEndPoint:
     def test_get_single_user_schemas(self):
         get_single_user = HTTPHandler.get(f'{EndPoint.SINGLE_USER}2', 'single_user.json')
         logger.info(get_single_user.json())
-        assert get_single_user, logger.warning('API response is incorrect')
+        assert get_single_user, logger.warning('API response is incorrect, wrong schema')
 
     def test_post_create_user_status_code(self):
         response = HTTPHandler.post(f'{EndPoint.SINGLE_USER}', DataPost.data_post_user)
@@ -43,7 +43,21 @@ class TestsUsersEndPoint:
     def test_post_create_user_response_verify_schema(self):
         create_user = HTTPHandler.post(f'{EndPoint.SINGLE_USER}', DataPost.data_post_user, 'create_user.json')
         logger.info(create_user.json())
-        assert create_user, logger.warning('API response is incorrect')
+        assert create_user, logger.warning('API response is incorrect, wrong schema')
+
+    def test_post_create_user_response_verify_key_name(self):
+        data = DataPost.data_post_user
+        logger.info(data['name'])
+        create_user = HTTPHandler.post(f'{EndPoint.SINGLE_USER}', data)
+        logger.info(create_user.json()['name'])
+        assert data['name'] == create_user.json()['name'], logger.warning('API response is incorrect')
+
+    def test_post_create_user_response_verify_key_job(self):
+        data = DataPost.data_post_user
+        logger.info(data['job'])
+        create_user = HTTPHandler.post(f'{EndPoint.SINGLE_USER}', data)
+        logger.info(create_user.json()['job'])
+        assert data['job'] == create_user.json()['job'], logger.warning('API response is incorrect')
 
     def test_put_create_and_update_user_status_code(self):
         response1 = HTTPHandler.post(f'{EndPoint.SINGLE_USER}', DataPost.data_post_user)
