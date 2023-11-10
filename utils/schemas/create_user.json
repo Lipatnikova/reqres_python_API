@@ -1,0 +1,19 @@
+{
+  "$id": "create_user",
+  "title": "Schema for API 'single user' 'https://reqres.in/api/users/'",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "job": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "string"
+    }
+  }
+}

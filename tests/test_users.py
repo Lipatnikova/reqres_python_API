@@ -40,6 +40,11 @@ class TestsUsersEndPoint:
         logger.info(response_status)
         assert response_status == Code.CREATED, logger.warning('Response status code is incorrect')
 
+    def test_post_create_user_response_verify_schema(self):
+        create_user = HTTPHandler.post(f'{EndPoint.SINGLE_USER}', DataPost.data_post_user, 'create_user.json')
+        logger.info(create_user.json())
+        assert create_user, logger.warning('API response is incorrect')
+
     def test_put_create_and_update_user_status_code(self):
         response1 = HTTPHandler.post(f'{EndPoint.SINGLE_USER}', DataPost.data_post_user)
         logger.info(response1)
