@@ -3,7 +3,7 @@ import json
 from utils.validator import validator
 import os
 
-from data.endpoints import UrlAndEndPoints as EndPoint
+from data_tests.endpoints import UrlAndEndPoints as EndPoint
 
 
 class HTTPHandler:

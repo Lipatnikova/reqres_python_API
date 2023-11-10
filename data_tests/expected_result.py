@@ -13,6 +13,3 @@ class ExpectedRequestsResult:
 
 class ExpectedCountUserList:
     COUNT_USERS = 22
-    PER_PAGE = 6
-    TOTAL = 12
-    TOTAL_PAGES = 2

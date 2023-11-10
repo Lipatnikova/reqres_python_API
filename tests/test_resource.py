@@ -1,9 +1,9 @@
 import logging
 import pytest
 
-from data.expected_result import ExpectedRequestsResult as Code
-from data.endpoints import UrlAndEndPoints as EndPoint
-from generator.generator import random_num_user
+from data_tests.expected_result import ExpectedRequestsResult as Code
+from data_tests.endpoints import UrlAndEndPoints as EndPoint
+# from generator.generator import random_num_user
 from utils.http_handler import HTTPHandler
 
 logger = logging.getLogger("api")
@@ -22,7 +22,7 @@ class TestUnknownEndPoint:
         assert get_single_resource, logger.warning('API response is incorrect')
 
     def test_get_single_resource_status_code(self):
-        response = HTTPHandler.get(f'{EndPoint.UNKNOWN}{random_num_user()}')
+        response = HTTPHandler.get(f'{EndPoint.UNKNOWN}/2')
         response_status = response.status_code
         assert response_status == Code.STATUS_CODE_OK, logger.warning('Response status code is incorrect')
 

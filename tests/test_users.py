@@ -1,8 +1,8 @@
 import logging
 
-from data.expected_result import ExpectedRequestsResult as Code
-from data.endpoints import UrlAndEndPoints as EndPoint
-from generator.generator import random_num_user
+from data_tests.data_tests import DataPost, random_num_user
+from data_tests.expected_result import ExpectedRequestsResult as Code
+from data_tests.endpoints import UrlAndEndPoints as EndPoint
 from utils.http_handler import HTTPHandler
 
 logger = logging.getLogger("api")
@@ -33,3 +33,8 @@ class TestsUsersEndPoint:
         get_single_user = HTTPHandler.get(f'{EndPoint.SINGLE_USER}2', 'single_user.json')
         logger.info(get_single_user.json())
         assert get_single_user, logger.warning('API response is incorrect')
+
+    def test_post_create_user_status_code(self):
+        response = HTTPHandler.post(f'{EndPoint.SINGLE_USER}', DataPost.data_post_users)
+        response_status = response.status_code
+        assert response_status == Code.CREATED, logger.warning('Response status code is incorrect')
