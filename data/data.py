@@ -47,3 +47,22 @@ class DataUpdateUser:
         "name": person.name,
         "job": person.job
     }
+
+
+class DataRegisterUser:
+    person = next(generated_person())
+
+    data_register_user = {
+        # "email": person.email,
+        "email": "eve.holt@reqres.in",
+        "password": person.password
+    }
+
+    data_register_user_wrong = {
+        "email": "sydney@fife"
+    }
+
+    data_register_user_wrong_v2 = {
+        "email": "eve.holt@reqres",
+        "password": person.password
+    }

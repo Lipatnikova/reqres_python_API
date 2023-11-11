@@ -13,3 +13,13 @@ class ExpectedRequestsResult:
 
 class ExpectedCountUserList:
     COUNT_USERS = 22
+
+
+class ExpectedMessage:
+    msg_not_password = {
+        "error": "Missing password"
+    }
+
+    msg_about_defined_users = {
+        {'error': 'Note: Only defined users succeed registration'}
+    }
