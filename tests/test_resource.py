@@ -1,8 +1,8 @@
 import logging
 import pytest
 
-from data_tests.expected_result import ExpectedRequestsResult as Code
-from data_tests.endpoints import UrlAndEndPoints as EndPoint
+from data.expected_result import ExpectedRequestsResult as Code
+from data.endpoints import UrlAndEndPoints as EndPoint
 # from generator.generator import random_num_user
 from utils.http_handler import HTTPHandler
 

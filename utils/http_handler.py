@@ -1,9 +1,9 @@
-import requests
 import json
-from utils.validator import validator
 import os
+import requests
 
-from data_tests.endpoints import UrlAndEndPoints as EndPoint
+from data.endpoints import UrlAndEndPoints as EndPoint
+from utils.validator import validator
 
 
 class HTTPHandler:

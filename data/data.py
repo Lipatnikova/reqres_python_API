@@ -2,7 +2,7 @@
 import random
 from faker import Faker
 from dataclasses import dataclass
-from data_tests.expected_result import ExpectedCountUserList as Count
+from data.expected_result import ExpectedCountUserList as Count
 
 
 @dataclass
@@ -31,19 +31,19 @@ def random_num_user():
     return random.randint(1, Count.COUNT_USERS)
 
 
-class DataPost:
+class DataCreateUser:
     person = next(generated_person())
 
-    data_post_user = {
+    data_create_user = {
         "name": person.name,
         "job": person.job
     }
 
 
-class DataPut:
+class DataUpdateUser:
     person = next(generated_person())
 
-    data_put_user = {
+    data_update_user = {
         "name": person.name,
         "job": person.job
     }
