@@ -76,7 +76,24 @@ class TestsUsersEndPoint:
 
     def test_put_update_user_verify_key_updated_at(self):
         data = DataUpdateUser.data_update_user
+        response = HTTPHandler.put(f'{EndPoint.SINGLE_USER}2', data).json()
+        logger.info(response)
+        today = str(datetime.today())[:10]
+        assert today in response['updatedAt'], logger.warning('API response is incorrect')
+
+    def test_patch_update_user_verify_key_updated_at(self):
+        data = DataUpdateUser.data_update_user
         response = HTTPHandler.patch(f'{EndPoint.SINGLE_USER}2', data).json()
         logger.info(response)
         today = str(datetime.today())[:10]
         assert today in response['updatedAt'], logger.warning('API response is incorrect')
+
+    def test_delete_user_status_code(self):
+        response = HTTPHandler.delete(f'{EndPoint.SINGLE_USER}2')
+        logger.info(response)
+        assert response.status_code == Code.NO_CONTENT, logger.warning('Response status code is incorrect')
+
+    def test_delete_user_content_after(self):
+        response = HTTPHandler.delete(f'{EndPoint.SINGLE_USER}2')
+        logger.info(response)
+        assert response.text == '', logger.warning('Response contains content')
