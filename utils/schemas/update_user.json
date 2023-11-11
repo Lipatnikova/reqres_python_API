@@ -1,0 +1,16 @@
+{
+  "$id": "update_user",
+  "title": "Schema for API 'users' 'https://reqres.in/api/users/2'",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "job": {
+      "type": "string"
+    },
+    "updatedAt": {
+      "type": "string"
+    }
+  }
+}
