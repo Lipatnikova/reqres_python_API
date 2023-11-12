@@ -66,3 +66,14 @@ class DataRegisterUser:
         "email": "eve.holt@reqres",
         "password": person.password
     }
+
+
+class DataLoginUser:
+    data_login = {
+        "email": "eve.holt@reqres.in",
+        "password": "cityslicka"
+    }
+
+    data_login_wrong_email = {
+        "email": "peter@klaven"
+    }

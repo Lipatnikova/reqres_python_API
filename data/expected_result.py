@@ -21,5 +21,5 @@ class ExpectedMessage:
     }
 
     msg_about_defined_users = {
-        {'error': 'Note: Only defined users succeed registration'}
+        'error': 'Note: Only defined users succeed registration'
     }
