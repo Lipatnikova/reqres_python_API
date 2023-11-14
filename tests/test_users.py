@@ -1,4 +1,5 @@
 import logging
+import time
 from datetime import datetime
 
 from data.data import DataCreateUser, random_num_user, DataUpdateUser
@@ -97,3 +98,8 @@ class TestsUsersEndPoint:
         response = HTTPHandler.delete(f'{EndPoint.SINGLE_USER}2')
         logger.info(response)
         assert response.text == '', logger.warning('Response contains content')
+
+    def test_get_delay_list_users_response_status_code(self):
+        response = HTTPHandler.get(f'{EndPoint.DELAY}3')
+        response_status = response.status_code
+        assert response_status == Code.STATUS_CODE_OK, logger.warning('Response status code is incorrect')
