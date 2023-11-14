@@ -22,6 +22,11 @@ class TestsUsersEndPoint:
         logger.info(verify_schema.json())
         assert verify_schema, logger.warning('API response is incorrect, wrong schema')
 
+    def test_get_list_users_response_count_headers(self):
+        response = HTTPHandler.get(f'{EndPoint.LIST_USERS}{random_num_user}')
+        headers = len(response.headers)
+        assert headers == 17, logger.warning('Count of headers is not correct')
+
     def test_get_single_user_response_status_code(self):
         get_single_user = HTTPHandler.get(f'{EndPoint.SINGLE_USER}2')
         assert get_single_user.status_code == Code.STATUS_CODE_OK, logger.warning('Status code is incorrect')
