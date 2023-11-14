@@ -23,3 +23,7 @@ class ExpectedMessage:
     msg_about_defined_users = {
         'error': 'Note: Only defined users succeed registration'
     }
+
+
+class ExpectedText:
+    content_type = 'application/json; charset=utf-8'

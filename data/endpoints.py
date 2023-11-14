@@ -7,3 +7,4 @@ class UrlAndEndPoints:
     REGISTER = '/api/register'
     LOGIN = '/api/login'
     DELAY = '/api/users?delay='
+    LOGOUT = '/api/logout'
