@@ -103,3 +103,13 @@ class TestsUsersEndPoint:
         response = HTTPHandler.get(f'{EndPoint.DELAY}3')
         response_status = response.status_code
         assert response_status == Code.STATUS_CODE_OK, logger.warning('Response status code is incorrect')
+
+    def test_get_delay_users_schema_json(self):
+        start_time = time.time()
+        verify_schema = HTTPHandler.get(f'{EndPoint.DELAY}3', 'list_users.json')
+        end_time = time.time()
+        delay = end_time - start_time
+        logger.info(verify_schema.json())
+        assert verify_schema, logger.warning('API response is incorrect, wrong schema')
+        logger.info(delay)
+        assert 3 <= delay, logger.warning('The delay time is wrong')
