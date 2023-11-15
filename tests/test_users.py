@@ -20,7 +20,7 @@ class TestsUsersEndPoint:
     def test_get_list_users_schema_json(self):
         verify_schema = HTTPHandler.get(f'{EndPoint.LIST_USERS}{random_num_user}', 'list_users.json')
         logger.info(verify_schema.json())
-        assert verify_schema, logger.warning('API response is incorrect, wrong schema')
+        assert verify_schema, logger.warning('API response is incorrect, wrong schema!')
 
     def test_get_list_users_response_count_headers(self):
         response = HTTPHandler.get(f'{EndPoint.LIST_USERS}{random_num_user}')
