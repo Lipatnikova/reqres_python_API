@@ -41,6 +41,12 @@ class TestsUsersEndPoint:
         logger.info(verify_schema.json())
         assert verify_schema, logger.warning('API response is incorrect, wrong schema')
 
+    def test_get_single_user_response_count_headers(self):
+        response = HTTPHandler.get(f'{EndPoint.SINGLE_USER}2')
+        headers = len(response.headers)
+        print(*response.headers.keys())
+        assert headers == 17, logger.warning('Count of headers is not correct')
+
     def test_post_create_user_status_code(self):
         response = HTTPHandler.post(f'{EndPoint.SINGLE_USER}', DataCreateUser.data_create_user)
         response_status = response.status_code
