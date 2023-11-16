@@ -19,9 +19,9 @@ class HTTPHandler:
             raise Exception("Invalid JSON response:", json.JSONDecodeError)
 
     @classmethod
-    def get(cls, endpoint, schemas=None):
+    def get(cls, endpoint, schemas=None, params=None):
         url = f"{EndPoint.BASE_URL}{endpoint}"
-        response = requests.get(url)
+        response = requests.get(url, params=params)
         if schemas:
             schemas_path_and_name = os.path.join('..', 'utils', 'schemas', schemas)
             absolute_schemas_path_and_name = os.path.abspath(schemas_path_and_name)

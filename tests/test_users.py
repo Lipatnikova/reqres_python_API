@@ -13,17 +13,18 @@ logger = logging.getLogger("api")
 class TestsUsersEndPoint:
 
     def test_get_list_users_response_status_code(self):
-        response = HTTPHandler.get(f'{EndPoint.LIST_USERS}{random_num_user}')
+        response = HTTPHandler.get(f'{EndPoint.SINGLE_USER}', params={'page': f'{random_num_user}'})
         response_status = response.status_code
         assert response_status == Code.STATUS_CODE_OK, logger.warning('Response status code is incorrect')
 
     def test_get_list_users_schema_json(self):
-        verify_schema = HTTPHandler.get(f'{EndPoint.LIST_USERS}{random_num_user}', 'list_users.json')
+        verify_schema = HTTPHandler.get(f'{EndPoint.SINGLE_USER}', params={'page': f'{random_num_user}'},
+                                        schemas='list_users.json')
         logger.info(verify_schema.json())
         assert verify_schema, logger.warning('API response is incorrect, wrong schema!')
 
     def test_get_list_users_response_count_headers(self):
-        response = HTTPHandler.get(f'{EndPoint.LIST_USERS}{random_num_user}')
+        response = HTTPHandler.get(f'{EndPoint.SINGLE_USER}', params={'page': f'{random_num_user}'})
         headers = len(response.headers)
         assert headers == 17, logger.warning('Count of headers is not correct')
 
@@ -111,13 +112,14 @@ class TestsUsersEndPoint:
         assert response.text == '', logger.warning('Response contains content')
 
     def test_get_delay_list_users_response_status_code(self):
-        response = HTTPHandler.get(f'{EndPoint.DELAY}3')
+        response = HTTPHandler.get(f'{EndPoint.SINGLE_USER}', params={'delay': '3'})
         response_status = response.status_code
         assert response_status == Code.STATUS_CODE_OK, logger.warning('Response status code is incorrect')
 
     def test_get_delay_users_schema_json(self):
         start_time = time.time()
-        verify_schema = HTTPHandler.get(f'{EndPoint.DELAY}3', 'list_users.json')
+        verify_schema = HTTPHandler.get(f'{EndPoint.SINGLE_USER}', params={'delay': '3'},
+                                        schemas='list_users.json')
         end_time = time.time()
         delay = end_time - start_time
         logger.info(verify_schema.json())
