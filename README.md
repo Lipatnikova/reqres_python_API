@@ -3,6 +3,7 @@
 The project contains API tests for [reqres](https://reqres.in/)
 The Swagger documentation: [api-doc](https://reqres.in/api-docs/)
 
+[![reqres python API](https://github.com/Lipatnikova/reqres_python_API/actions/workflows/main.yml/badge.svg?branch=)](https://github.com/Lipatnikova/reqres_python_API/blob/main/.github/workflows/main.yml)
 ![Python Version](https://img.shields.io/badge/python-3.11-blue)
 [![dependency - pytest](https://img.shields.io/badge/dependency-pytest-blue?logo=pytest&logoColor=white)](https://pypi.org/project/pytest)
 
