@@ -28,6 +28,13 @@ class TestsUsersEndPoint:
         headers = len(response.headers)
         assert headers == 17, logger.warning('Count of headers is not correct')
 
+    def test_get_list_users_time_elapsed_between_sending_the_request_and_the_arrival_of_the_response(self):
+        response = HTTPHandler.get(f'{EndPoint.SINGLE_USER}', params={'page': f'{random_num_user}'})
+        time_elapsed = int(str(response.elapsed).split('.', 5)[1])
+        logger.info(response.elapsed)
+        assert time_elapsed <= 500000, f'Time elapsed between sending the request and ' \
+                                       f'the arrival of the response: 0:00:00.{time_elapsed}'
+
     def test_get_single_user_response_status_code(self):
         get_single_user = HTTPHandler.get(f'{EndPoint.SINGLE_USER}2')
         assert get_single_user.status_code == Code.STATUS_CODE_OK, logger.warning('Status code is incorrect')
