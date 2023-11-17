@@ -3,6 +3,7 @@ import logging
 from data.data import DataLoginUser
 from data.expected_result import ExpectedRequestsResult as Code
 from data.expected_result import ExpectedMessage as Msg
+from data.expected_result import ExpectedText
 from data.endpoints import UrlAndEndPoints as EndPoint
 from utils.http_handler import HTTPHandler
 
@@ -31,6 +32,12 @@ class TestLoginEndPoint:
         response = HTTPHandler.post(f'{EndPoint.LOGIN}', DataLoginUser.data_login)
         headers = len(response.headers)
         assert headers == 14, logger.warning('Count of headers is not correct')
+
+    def test_login_successful_verify_content_type(self):
+        response = HTTPHandler.get(f'{EndPoint.LOGIN}')
+        logger.info(response.headers['Content-Type'])
+        assert ExpectedText.content_type in response.headers['Content-Type'], \
+            logger.warning('The headers Content-Type is wrong.')
 
     def test_login_time_elapsed_between_sending_the_request_and_the_arrival_of_the_response(self):
         response = HTTPHandler.post(f'{EndPoint.LOGIN}', DataLoginUser.data_login)
