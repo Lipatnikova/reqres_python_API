@@ -32,7 +32,7 @@ class TestLoginEndPoint:
         headers = len(response.headers)
         assert headers == 14, logger.warning('Count of headers is not correct')
 
-    def test_login_elapsed_between_sending_the_request_and_the_arrival_of_the_response(self):
+    def test_login_time_elapsed_between_sending_the_request_and_the_arrival_of_the_response(self):
         response = HTTPHandler.post(f'{EndPoint.LOGIN}', DataLoginUser.data_login)
         time_elapsed = int(str(response.elapsed).split('.', 5)[1])
         logger.info(response.elapsed)
