@@ -18,12 +18,18 @@ class TestsRegisterEndPoint:
         logger.info(response_status)
         assert response_status == Code.STATUS_CODE_OK, logger.warning('Response status code is incorrect')
 
-    def test_post_register_user_with_wrong_email(self):
-        data = DataRegisterUser.data_register_user_wrong
+    def test_register_user_response_count_headers(self):
+        data = DataRegisterUser.data_register_user
         response = HTTPHandler.post(f'{EndPoint.REGISTER}', data)
-        response_status = response.status_code
-        logger.info(response_status)
-        assert response_status == Code.BAD_REQUEST, logger.warning('Response status code is incorrect')
+        headers = len(response.headers)
+        assert headers == 14, logger.warning('Count of headers is not correct')
+
+    def test_post_register_user_with_wrong_email(self):
+            data = DataRegisterUser.data_register_user_wrong
+            response = HTTPHandler.post(f'{EndPoint.REGISTER}', data)
+            response_status = response.status_code
+            logger.info(response_status)
+            assert response_status == Code.BAD_REQUEST, logger.warning('Response status code is incorrect')
 
     def test_post_register_with_wrong_email_without_password_verify_message(self):
         data = DataRegisterUser.data_register_user_wrong
