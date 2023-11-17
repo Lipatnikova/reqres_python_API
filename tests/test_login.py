@@ -26,3 +26,16 @@ class TestLoginEndPoint:
         response = HTTPHandler.post(f'{EndPoint.LOGIN}', DataLoginUser.data_login_wrong_email).json()
         logger.info(response)
         assert response == Msg.msg_not_password, logger.warning("Message 'Missing password' is wrong")
+
+    def test_login_successful_response_count_headers(self):
+        response = HTTPHandler.post(f'{EndPoint.LOGIN}', DataLoginUser.data_login)
+        headers = len(response.headers)
+        assert headers == 14, logger.warning('Count of headers is not correct')
+
+    def test_login_elapsed_between_sending_the_request_and_the_arrival_of_the_response(self):
+        response = HTTPHandler.post(f'{EndPoint.LOGIN}', DataLoginUser.data_login)
+        time_elapsed = int(str(response.elapsed).split('.', 5)[1])
+        logger.info(response.elapsed)
+        assert time_elapsed <= 500000, f'Time elapsed between sending the request and ' \
+                                       f'the arrival of the response: 0:00:00.{time_elapsed}'
+
