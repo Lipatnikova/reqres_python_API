@@ -3,7 +3,7 @@ import pytest
 
 from data.expected_result import ExpectedRequestsResult as Code
 from data.endpoints import UrlAndEndPoints as EndPoint
-# from generator.generator import random_num_user
+from data.expected_result import ExpectedText
 from utils.http_handler import HTTPHandler
 
 logger = logging.getLogger("api")
@@ -38,3 +38,15 @@ class TestUnknownEndPoint:
                                                         'single_resource.json')
         logger.info(get_single_random_id_resource.json())
         assert get_single_random_id_resource, logger.warning('API response is incorrect')
+
+    def test_get_list_resource_verify_content_type(self):
+        response = HTTPHandler.get(f'{EndPoint.UNKNOWN}')
+        logger.info(response.headers['Content-Type'])
+        assert ExpectedText.content_type in response.headers['Content-Type'], \
+            logger.warning('The headers Content-Type is wrong.')
+
+    def test_get_list_resource_response_count_headers(self):
+        response = HTTPHandler.get(f'{EndPoint.UNKNOWN}')
+        headers = len(response.headers)
+        print(*response.headers.keys(), sep='; ')
+        assert headers == 18, logger.warning('Count of headers is not correct')
