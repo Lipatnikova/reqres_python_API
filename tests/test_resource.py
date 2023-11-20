@@ -31,10 +31,8 @@ class TestUnknownEndPoint:
         response_status = response.status_code
         assert response_status == Code.NOT_FOUND, logger.warning('Response status code is incorrect')
 
-    @pytest.mark.xfail
-    # Invalid JSON response schema is wrong?
     def test_get_single_random_id_resource_schemas(self):
-        get_single_random_id_resource = HTTPHandler.get(f'{EndPoint.UNKNOWN}2',
+        get_single_random_id_resource = HTTPHandler.get(f'{EndPoint.UNKNOWN}/2',
                                                         'single_resource.json')
         logger.info(get_single_random_id_resource.json())
         assert get_single_random_id_resource, logger.warning('API response is incorrect')

@@ -1,19 +1,19 @@
 {
-  "$id": "single_resource",
-  "$title": "Schema for API 'single_resource' 'https://reqres.in/api/unknown/2'",
+  "$schema": "https://reqres.in/api/unknown/2",
+  "title": "Schema for API 'single_resource",
   "type": "object",
   "properties": {
     "data": {
       "type": "object",
       "properties": {
         "id": {
-          "type": "integer"
+          "type": "number"
         },
         "name": {
           "type": "string"
         },
         "year": {
-          "type": "integer"
+          "type": "number"
         },
         "color": {
           "type": "string"
@@ -28,8 +28,7 @@
         "year",
         "color",
         "pantone_value"
-      ],
-      "additionalProperties": false
+      ]
     },
     "support": {
       "type": "object",
@@ -44,13 +43,11 @@
       "required": [
         "url",
         "text"
-      ],
-      "additionalProperties": false
+      ]
     }
   },
   "required": [
     "data",
     "support"
-  ],
-  "additionalProperties": false
+  ]
 }
