@@ -1,4 +1,5 @@
 # Description:
+Python API tests using requests
 
 The project contains API tests for [reqres](https://reqres.in/)
 The Swagger documentation: [api-doc](https://reqres.in/api-docs/)
